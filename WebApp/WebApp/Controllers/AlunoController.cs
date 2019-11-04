@@ -9,23 +9,41 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
-    [EnableCors("*","*","*")]
+    [EnableCors("*", "*", "*")]
+    [RoutePrefix("api/Aluno")]
     public class AlunoController : ApiController
     {
         // GET: api/Aluno
-        public IEnumerable<Aluno> Get()
+        [HttpGet]
+        [Route("Recuperar")]
+        public IHttpActionResult Recuperar()
         {
-            Aluno aluno = new Aluno();
-
-            return aluno.listarAlunos();
+            try
+            {
+                Aluno aluno = new Aluno();
+                return Ok(aluno.listarAlunos());
+            }
+            catch (Exception ex){
+                return InternalServerError(ex);
+            }
         }
 
         // GET: api/Aluno/5
-        public Aluno Get(int id)
+        [HttpGet]
+        [Route("Recuperar/{id:int}/{nome}/{sobrenome=andrade}")]
+        public Aluno Get(int id, string nome, string sobrenome)
         {
             Aluno aluno = new Aluno();
 
             return aluno.listarAlunos().Where(x=> x.id== id).FirstOrDefault();
+        }
+        [HttpGet]
+        [Route(@"RecuperarPorDataNome/{data:regex([0-9]{4}\-[0-9]{2})}/{nome:minlength(5)}")]
+        public Aluno IHttpActionResult Recuperar(string data, string nome)
+        {
+            Aluno aluno = new Aluno();
+
+            return aluno.listarAlunos().Where(x => x.id == id).FirstOrDefault();
         }
 
         // POST: api/Aluno

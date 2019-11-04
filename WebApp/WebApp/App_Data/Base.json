@@ -4,6 +4,7 @@
     "nome": "Marta",
     "sobrenome": "Will",
     "telefone": "123456",
+    "data": "2002-11",
     "ra": 1
   },
   {
@@ -11,41 +12,47 @@
     "nome": "Fernando",
     "sobrenome": "Marques",
     "telefone": "123456",
+    "data": "2002-11",
     "ra": 2
-  },
-  {
-    "id": 3,
-    "nome": "Pedro",
-    "sobrenome": "Antonio",
-    "telefone": "8468486",
-    "ra": 1234568
   },
   {
     "id": 4,
     "nome": "Bruno",
     "sobrenome": "Henrique",
     "telefone": "15165468",
+    "data": "2002-11",
     "ra": 12151
   },
   {
     "id": 5,
-    "nome": "teste",
-    "sobrenome": "teste1",
-    "telefone": "teste2",
-    "ra": 0
-  },
-  {
-    "id": 6,
-    "nome": "teste684",
-    "sobrenome": "teste21",
-    "telefone": "teste1636",
-    "ra": 999111
+    "nome": "Sixdoo teste",
+    "sobrenome": "teste da sixdoo",
+    "telefone": "teste",
+    "data": "2002-11",
+    "ra": 5468
   },
   {
     "id": 7,
-    "nome": "teste111",
-    "sobrenome": "teste11122",
-    "telefone": "te22354",
-    "ra": 3333
+    "nome": "novo teste sixdoo",
+    "sobrenome": "teste da sixdoo",
+    "telefone": "456123",
+    "data": "2002-11",
+    "ra": 372819
+  },
+  {
+    "id": 8,
+    "nome": "Fernando Sixdoo",
+    "sobrenome": "Marques",
+    "telefone": "123321",
+    "data": "2002-11",
+    "ra": 1111
+  },
+  {
+    "id": 9,
+    "nome": "Iago",
+    "sobrenome": "Sixdoo",
+    "telefone": "666111666",
+    "data": "2002-11",
+    "ra": 12382
   }
 ]
