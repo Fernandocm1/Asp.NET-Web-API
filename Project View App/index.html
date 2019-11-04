@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="titulo">Cadastrar Aluno</h2>
+    <div><label>Nome</label><input id="nome" type="text"></div>
+    <div><label>Sobrenome</label><input id="sobrenome" type="text"></div>
+    <div><label>Telefone</label><input id="telefone" type="text"></div>
+    <div><label>RA</label><input id="ra" type="text"></div>
+    <div>
+        <button id="btnSalvar" onclick="Cadastrar()">Cadastrar</button>
+        <button id="btnCancelar" onclick="Cancelar()">Limpar</button>
+    </div>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Nome</td>
+                <td>Sobrenome</td>
+                <td>Telefone</td>
+                <td>RA</td>
+                <td>Opções</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        var tbody = document.querySelector('table tbody');
+        var aluno;
+
+        function Cadastrar(){            
+            aluno.nome =  document.querySelector('#nome').value;
+            aluno.sobrenome = document.querySelector('#sobrenome').value;
+            aluno.telefone = document.querySelector('#telefone').value;
+            aluno.ra = document.querySelector('#ra').value;            
+            
+            console.log(aluno);
+            if (aluno.id === undefined || aluno.id === 0){
+                carregaEstudantes('POST',0, aluno);
+            }else
+            {
+                carregaEstudantes('PUT',aluno.id, aluno);
+            }
+        }
+        function Cancelar(){
+            var btnSalvar = document.querySelector('#btnSalvar');
+            var btnCancelar = document.querySelector('#btnCancelar');
+            var titulo = document.querySelector('#titulo');
+            document.querySelector('#nome').value = '';
+            document.querySelector('#sobrenome').value = '';
+            document.querySelector('#telefone').value = '';
+            document.querySelector('#ra').value = '';
+
+            btnSalvar.textContent = 'Cadastrar';
+            btnCancelar.textContent = 'Limpar';
+
+            titulo.textContent = "Cadastrar Aluno";
+        }
+        function carregaEstudantes(metodo, id, corpo){
+            tbody.innerHTML = '';
+
+            var xhr = new XMLHttpRequest();
+
+            if (id === undefined || id === 0)
+                id = '';
+
+            xhr.open(metodo, `https://localhost:44306/api/Aluno/${id}`, true);
+
+            xhr.onload = function () {
+                if (metodo !== "DELETE"){
+                    var estudantes = JSON.parse(this.responseText)
+                    for(var indice in estudantes){
+                        adicionaLinha(estudantes[indice]);
+                    }
+                }else
+                {
+                    carregaEstudantes('GET');
+                }
+            }
+            if(corpo !== undefined)
+            {
+                xhr.setRequestHeader('content-type','application/json');
+                xhr.send(JSON.stringify(corpo));
+            }
+            else
+            {
+                xhr.send();
+            }
+        }
+
+        carregaEstudantes('GET');
+
+        function editarEstudante(estudante){
+            var btnSalvar = document.querySelector('#btnSalvar');
+            var btnCancelar = document.querySelector('#btnCancelar');
+            var titulo = document.querySelector('#titulo');
+            document.querySelector('#nome').value = estudante.nome;
+            document.querySelector('#sobrenome').value = estudante.sobrenome;
+            document.querySelector('#telefone').value = estudante.telefone;
+            document.querySelector('#ra').value = estudante.ra;
+
+            btnSalvar.textContent = 'Salvar';
+            btnCancelar.textContent = 'Cancelar';
+
+            titulo.textContent = `Editar Aluno ${estudante.nome}`;
+
+            aluno = estudante;
+
+            console.log(aluno);
+            
+            //carregaEstudantes('PUT',id,estudante);
+        }
+        function deletarEstudante(id){
+            aluno="";
+            carregaEstudantes('DELETE',id,aluno);
+        }
+
+        function adicionaLinha(estudante){
+            var trow = `<tr>
+                            <td>${estudante.nome}</td>
+                            <td>${estudante.sobrenome}</td>
+                            <td>${estudante.telefone}</td>
+                            <td>${estudante.ra}</td>
+                            <td><button onclick='editarEstudante(${JSON.stringify(estudante)})'>Editar</button></td>
+                            <td><button onclick='deletarEstudante(${estudante.id})'>Deletar</button></td>
+                        </tr>
+                        `
+            tbody.innerHTML += trow;
+            console.log(estudante.nome);
+        }
+    </script>
+</body>
+</html>
