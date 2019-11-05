@@ -192,8 +192,12 @@ C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\bin\System.Net.Http.
 C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\bin\System.Web.Http.xml
 C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\bin\System.Web.Http.WebHost.xml
 C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\obj\Debug\WebApp.csprojAssemblyReference.cache
 C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\obj\Debug\WebApp.csproj.CoreCompileInputs.cache
 C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\obj\Debug\WebApp.csproj.CopyComplete
 C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\obj\Debug\WebApp.dll
 C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\obj\Debug\WebApp.pdb
+C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\bin\WebApp.xml
+C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\bin\Swashbuckle.Core.dll
+C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\bin\WebActivatorEx.dll
+C:\Users\desen\Desktop\Estudo\Asp.NET-Web-API\WebApp\WebApp\obj\Debug\WebApp.csprojAssemblyReference.cache

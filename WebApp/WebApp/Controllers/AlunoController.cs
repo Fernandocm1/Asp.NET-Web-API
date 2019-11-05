@@ -20,7 +20,7 @@ namespace WebApp.Controllers
         {
             try
             {
-                Aluno aluno = new Aluno();
+                AlunoModel aluno = new AlunoModel();
                 return Ok(aluno.listarAlunos());
             }
             catch (Exception ex){
@@ -30,46 +30,87 @@ namespace WebApp.Controllers
 
         // GET: api/Aluno/5
         [HttpGet]
-        [Route("Recuperar/{id:int}/{nome}/{sobrenome=andrade}")]
-        public Aluno Get(int id, string nome, string sobrenome)
+        [Route("Recuperar/{id:int}/{nome?}/{sobrenome?}")]
+        public AlunoDTO Get(int id, string nome = null, string sobrenome = null)
         {
-            Aluno aluno = new Aluno();
+            AlunoModel aluno = new AlunoModel();
 
-            return aluno.listarAlunos().Where(x=> x.id== id).FirstOrDefault();
+            return aluno.listarAlunos(id).Where(x=> x.id== id).FirstOrDefault();
         }
+
         [HttpGet]
         [Route(@"RecuperarPorDataNome/{data:regex([0-9]{4}\-[0-9]{2})}/{nome:minlength(5)}")]
-        public Aluno IHttpActionResult Recuperar(string data, string nome)
+        public IHttpActionResult Recuperar2(string data, string nome)
         {
-            Aluno aluno = new Aluno();
+            try
+            {
+                AlunoModel aluno = new AlunoModel();
 
-            return aluno.listarAlunos().Where(x => x.id == id).FirstOrDefault();
+
+                return Ok(aluno.listarAlunos().Where(a => a.data == data || a.nome == nome));
+            }
+            catch (Exception ex)
+            {  
+                return BadRequest("deu zica: " + ex);
+            }
         }
 
         // POST: api/Aluno
-        public List<Aluno> Post(Aluno aluno)
+        [HttpPost]
+        public IHttpActionResult Post(AlunoDTO aluno)
         {
-            Aluno _aluno = new Aluno();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  
+            }
+            try
+            {
+                AlunoModel _aluno = new AlunoModel();
 
-            _aluno.Inserir(aluno);
+                _aluno.Inserir(aluno);
 
-            return _aluno.listarAlunos();
+                return Ok(_aluno.listarAlunos());
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         // PUT: api/Aluno/5
-        public Aluno Put(int id, [FromBody]Aluno aluno)
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]AlunoDTO aluno)
         {
-            Aluno _aluno = new Aluno();
+            try
+            {
 
-            return _aluno.Atualizar(id, aluno);
+                AlunoModel _aluno = new AlunoModel();
+                aluno.id = id;
+                _aluno.Atualizar(aluno);
+
+                return Ok(_aluno.listarAlunos(id).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         // DELETE: api/Aluno/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
         {
-            Aluno _aluno = new Aluno();
+            try
+            {
 
-            _aluno.Deletar(id);
+                AlunoModel _aluno = new AlunoModel();
+                _aluno.Deletar(id);
+                return Ok("Deletado com Sucesso!");
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }
